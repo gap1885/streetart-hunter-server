@@ -14,7 +14,7 @@ const authRouter = require('./routes/auth')
 
 const app = express()
 
-mongoose.connect(process.env.MONGO_DB_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
