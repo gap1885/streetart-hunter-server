@@ -14,7 +14,7 @@ const authRouter = require('./routes/auth')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/street-art', {
+mongoose.connect(process.env.MONGO_DB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
@@ -40,7 +40,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: [process.env.CLIENT_URI]
 }))
 
 app.use('/users', usersRouter)
