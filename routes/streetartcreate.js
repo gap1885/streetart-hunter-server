@@ -4,10 +4,10 @@ const express = require('express')
 const router = express.Router()
 const ObjectId = require('mongoose').Types.ObjectId
 
-const User = require('../models/user')
+const Streetart = require('../models/streetart')
 
 router.get('/', (req, res, next) => {
-  User.find({})
+  Streetart.find({})
     .then((results) => {
       res.json(results)
     })
@@ -15,14 +15,14 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  const { username, password } = req.body
-  if (!username || !password) {
+  const { name, author } = req.body
+  if (!name || !author) {
     return res.status(422).json({ code: 'unprosessable-entity' })
   }
-  const user = new User(req.body)
-  user.save()
+  const streetartcreate = new Streetart(req.body)
+  streetartcreate.save()
     .then(() => {
-      res.status(200).json(user)
+      res.status(200).json(streetartcreate)
     })
     .catch(next)
 })
@@ -32,9 +32,9 @@ router.delete('/:id', (req, res, next) => {
   if (!id || !ObjectId.isValid(id)) {
     res.status(404).json({ code: 'not-found' })
   }
-  User.remove({ _id: id })
+  Streetart.remove({ _id: id })
     .then(() => {
-      res.json({ code: 'user deleted' })
+      res.json({ code: 'street art deleted' })
     })
     .catch(next)
 })

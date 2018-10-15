@@ -9,12 +9,12 @@ const cors = require('cors')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-const usersRouter = require('./routes/users')
+const usersRouter = require('./routes/streetartcreate')
 const authRouter = require('./routes/auth')
 
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb://localhost/street-art', {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
@@ -37,10 +37,9 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({
   credentials: true,
-  origin: [process.env.CLIENT_URI]
+  origin: ['http://localhost:4200']
 }))
 
 app.use('/users', usersRouter)
