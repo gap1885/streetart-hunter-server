@@ -8,7 +8,7 @@ const streetart = [{
 }, {
   name: 'streetart2',
   author: 'xxy',
-  url: '.https://media-cdn.tripadvisor.com/media/photo-s/0e/10/aa/47/the-famous-ballon-in.jpg'
+  url: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/10/aa/47/the-famous-ballon-in.jpg'
 
 }, {
   name: 'streetart3',
