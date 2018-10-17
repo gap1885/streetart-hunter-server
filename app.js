@@ -9,7 +9,7 @@ const cors = require('cors')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-const usersRouter = require('./routes/streetartcreate')
+const streetart = require('./routes/streetart')
 const authRouter = require('./routes/auth')
 
 const app = express()
@@ -42,7 +42,7 @@ app.use(cors({
   origin: ['http://localhost:4200']
 }))
 
-app.use('/users', usersRouter)
+app.use('/streetart', streetart)
 app.use('/auth', authRouter)
 
 app.use((req, res, next) => {

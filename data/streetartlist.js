@@ -1,6 +1,6 @@
 'use strict'
 
-const list = [{
+const streetart = [{
   name: 'streetart1',
   author: 'xxy',
   url: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/10/aa/47/the-famous-ballon-in.jpg'
@@ -22,3 +22,5 @@ const list = [{
 
 }
 ]
+
+module.exports = streetart
