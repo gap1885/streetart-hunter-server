@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id
   if (!id || !ObjectId.isValid(id)) {
-    res.status(404).json({ code: 'not-found' })
+    return res.status(404).json({ code: 'not-found' })
   }
   Streetart.remove({ _id: id })
     .then(() => {
