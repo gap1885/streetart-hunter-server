@@ -1,7 +1,7 @@
 'use strict'
+require('dotenv').config()
 
 const express = require('express')
-const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
@@ -14,7 +14,7 @@ const authRouter = require('./routes/auth')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/street-art', {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE
@@ -39,11 +39,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: [process.env.CLIENT_URI]
 }))
 
-app.use('/streetart', streetart)
 app.use('/auth', authRouter)
+app.use('/streetart', streetart)
 
 app.use((req, res, next) => {
   res.status(404).json({ code: 'not-found' })
